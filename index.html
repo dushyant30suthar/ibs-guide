@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IBS — how to read a case, and the index you carry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#faf7f2; --ink:#1f1d1a; --muted:#6b655c; --line:#e3ddd3;
+    --rust:#b5542d; --rust-soft:#f3e3d9; --moss:#4f6b46; --moss-soft:#e4ebdf;
+    --slate:#3f5a74; --slate-soft:#dfe7ee; --gold:#a8812a; --gold-soft:#f1e8d0;
+    --plum:#6d4a6f; --plum-soft:#eadfe9;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:17px;line-height:1.55}
+  h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:700;line-height:1.15;margin:0 0 .4em}
+  h1{font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.01em}
+  h2{font-size:clamp(1.5rem,3vw,2.1rem);margin-top:0}
+  h3{font-size:1.15rem;margin-top:0}
+  p{margin:.4em 0 1em}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  header{padding:64px 0 36px;border-bottom:1px solid var(--line)}
+  .kicker{display:inline-block;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);font-weight:600;margin-bottom:14px}
+  .lede{font-size:1.25rem;color:var(--muted);max-width:720px}
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  .num{font-family:Fraunces,serif;color:var(--rust);font-size:.95rem;font-weight:700;letter-spacing:.08em;margin-bottom:6px}
+  .grid{display:grid;gap:22px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;box-shadow:0 1px 0 rgba(0,0,0,.02)}
+  .card.tint-rust{background:var(--rust-soft);border-color:transparent}
+  .card.tint-moss{background:var(--moss-soft);border-color:transparent}
+  .card.tint-slate{background:var(--slate-soft);border-color:transparent}
+  .card.tint-gold{background:var(--gold-soft);border-color:transparent}
+  .fig{margin:28px 0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}
+  .fig svg{width:100%;height:auto;display:block}
+  .cap{font-size:.9rem;color:var(--muted);margin:10px 4px 0}
+  .big{font-family:Fraunces,serif;font-size:2.4rem;font-weight:700;line-height:1;margin:0}
+  .small{font-size:.92rem;color:var(--muted)}
+  table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:.95rem}
+  th,td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f3efe8;font-weight:600;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+  tr:last-child td{border-bottom:0}
+  .tag{display:inline-block;padding:2px 10px;border-radius:999px;font-size:.78rem;font-weight:600;letter-spacing:.03em}
+  .t-rust{background:var(--rust-soft);color:var(--rust)} .t-moss{background:var(--moss-soft);color:var(--moss)}
+  .t-slate{background:var(--slate-soft);color:var(--slate)} .t-gold{background:var(--gold-soft);color:var(--gold)} .t-plum{background:var(--plum-soft);color:var(--plum)}
+  .line{background:#fff;border:1px solid var(--line);border-left:5px solid var(--rust);border-radius:10px;padding:14px 18px;margin:12px 0;font-size:.98rem}
+  .line b{font-weight:600}
+  .line .arrow{color:var(--rust);font-weight:700;margin:0 6px}
+  .line .rule{display:block;margin-top:6px;color:var(--muted)}
+  .steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:12px}
+  .steps li{counter-increment:s;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px 14px 62px;position:relative}
+  .steps li::before{content:counter(s);position:absolute;left:16px;top:12px;width:32px;height:32px;border-radius:50%;background:var(--ink);color:#fff;font-family:Fraunces,serif;font-weight:700;display:grid;place-items:center}
+  .dont{display:grid;gap:10px}
+  .dont div{padding:12px 16px;border-radius:10px;background:#fff;border:1px solid var(--line)}
+  .dont b{color:var(--rust)}
+  footer{padding:40px 0 60px;color:var(--muted);font-size:.9rem}
+  @media print{header{padding-top:20px} section{padding:28px 0;break-inside:avoid} .fig{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="kicker">CA Final · Paper 6 · Integrated Business Solutions</span>
+    <h1>The case is seven small exams stapled together.<br>Read it that way.</h1>
+    <p class="lede">What three past papers (Sep-25, Jan-26, May-26) show about how a case is built — and the one tool that turns the stack of books into a 60-second lookup.</p>
+  </div>
+</header>
+
+<!-- 1. SHAPE -->
+<section>
+  <div class="wrap">
+    <div class="num">01</div>
+    <h2>The paper never changes shape</h2>
+    <div class="grid g3">
+      <div class="card tint-rust"><p class="big">5 → 4</p><p>Five cases. Attempt four. Each is 25 marks.</p></div>
+      <div class="card tint-moss"><p class="big">5 + 3</p><p>Five MCQs (2 marks each) and three long answers (4–6 marks).</p></div>
+      <div class="card tint-slate"><p class="big">60 min</p><p>Per case. About 10 to read, 6 per question.</p></div>
+    </div>
+    <div class="fig">
+      <svg viewBox="0 0 980 300" xmlns="http://www.w3.org/2000/svg" font-family="Inter,system-ui,sans-serif">
+        <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#b5542d"/></marker></defs>
+        <!-- case paragraphs -->
+        <text x="20" y="28" font-size="13" fill="#6b655c" font-weight="600">CASE TEXT — paragraphs</text>
+        <g font-size="12" fill="#1f1d1a">
+          <rect x="20" y="44" width="260" height="22" rx="6" fill="#efe9df"/><text x="30" y="59">company story (long, no numbers)</text>
+          <rect x="20" y="74" width="120" height="22" rx="6" fill="#f3e3d9" stroke="#b5542d"/><text x="30" y="89">order placed, € price, due date</text>
+          <rect x="20" y="104" width="190" height="22" rx="6" fill="#efe9df"/><text x="30" y="119">fire · stock lost · insurance</text>
+          <rect x="20" y="134" width="170" height="22" rx="6" fill="#efe9df"/><text x="30" y="149">board · 91% holding · prices</text>
+          <rect x="20" y="164" width="150" height="22" rx="6" fill="#efe9df"/><text x="30" y="179">spot / forward / interest</text>
+          <rect x="20" y="194" width="230" height="22" rx="6" fill="#efe9df"/><text x="30" y="209">4 exchange rates · 2 dates · duty cut</text>
+          <rect x="20" y="224" width="200" height="22" rx="6" fill="#efe9df"/><text x="30" y="239">auditor · confirmations · cash</text>
+        </g>
+        <!-- questions -->
+        <text x="620" y="28" font-size="13" fill="#6b655c" font-weight="600">QUESTIONS — one per subject</text>
+        <g font-size="12">
+          <g transform="translate(620,44)"><rect width="200" height="22" rx="6" fill="#dfe7ee"/><text x="10" y="15" fill="#1f1d1a">Q1 Customs duty</text><text x="192" y="15" text-anchor="end" fill="#3f5a74" font-weight="600">2</text></g>
+          <g transform="translate(620,74)"><rect width="200" height="22" rx="6" fill="#dfe7ee"/><text x="10" y="15" fill="#1f1d1a">Q2 Audit confirmations</text><text x="192" y="15" text-anchor="end" fill="#3f5a74" font-weight="600">2</text></g>
+          <g transform="translate(620,104)"><rect width="200" height="22" rx="6" fill="#dfe7ee"/><text x="10" y="15" fill="#1f1d1a">Q3 Direct tax</text><text x="192" y="15" text-anchor="end" fill="#3f5a74" font-weight="600">2</text></g>
+          <g transform="translate(620,134)"><rect width="200" height="22" rx="6" fill="#dfe7ee"/><text x="10" y="15" fill="#1f1d1a">Q4 GST ITC</text><text x="192" y="15" text-anchor="end" fill="#3f5a74" font-weight="600">2</text></g>
+          <g transform="translate(620,164)"><rect width="200" height="22" rx="6" fill="#dfe7ee"/><text x="10" y="15" fill="#1f1d1a">Q5 Company law</text><text x="192" y="15" text-anchor="end" fill="#3f5a74" font-weight="600">2</text></g>
+          <g transform="translate(620,194)"><rect width="200" height="22" rx="6" fill="#dfe7ee"/><text x="10" y="15" fill="#1f1d1a">Q6 Strategy</text><text x="192" y="15" text-anchor="end" fill="#3f5a74" font-weight="600">5</text></g>
+          <g transform="translate(620,224)"><rect width="200" height="22" rx="6" fill="#dfe7ee"/><text x="10" y="15" fill="#1f1d1a">Q7 AFM hedge</text><text x="192" y="15" text-anchor="end" fill="#3f5a74" font-weight="600">5</text></g>
+          <g transform="translate(620,254)"><rect width="200" height="22" rx="6" fill="#dfe7ee"/><text x="10" y="15" fill="#1f1d1a">Q8 Depreciation</text><text x="192" y="15" text-anchor="end" fill="#3f5a74" font-weight="600">5</text></g>
+        </g>
+        <!-- arrows: short dense paragraph feeds 3 questions -->
+        <g stroke="#b5542d" stroke-width="2.2" fill="none" marker-end="url(#ar)">
+          <path d="M140,85 C 400,85 400,55 612,55"/>
+          <path d="M140,85 C 400,85 400,235 612,235"/>
+          <path d="M140,85 C 400,85 400,265 612,265"/>
+        </g>
+        <g stroke="#c9c1b4" stroke-width="1.6" fill="none">
+          <path d="M280,55 C 450,55 450,205 612,205"/>
+          <path d="M210,115 C 420,115 420,145 612,145"/>
+          <path d="M210,115 C 420,115 420,265 612,265"/>
+          <path d="M190,145 C 420,145 420,175 612,175"/>
+          <path d="M170,175 C 420,175 420,235 612,235"/>
+          <path d="M250,205 C 440,205 440,55 612,55"/>
+          <path d="M220,235 C 440,235 440,85 612,85"/>
+        </g>
+        <text x="300" y="290" font-size="12" fill="#b5542d" font-weight="600">one 11-line paragraph → 3 questions → 12 of 25 marks</text>
+      </svg>
+      <p class="cap">May-26, Case 1, drawn from the actual paper. The questions never depend on each other; each one sits on one or two paragraphs.</p>
+    </div>
+    <p>Every case has <b>one question from each subject</b>: FR, AFM, Audit, Law, Direct Tax, GST/Customs, Costing/Strategy. The company and the industry are new every time. The question types are not.</p>
+  </div>
+</section>
+
+<!-- 2. READ -->
+<section>
+  <div class="wrap">
+    <div class="num">02</div>
+    <h2>How to read a case in 10 minutes</h2>
+    <ol class="steps">
+      <li><b>Read the 8 questions first</b> (2 min). Write the subject in the margin next to each. Now you know which paragraphs matter before you've read them.</li>
+      <li><b>Read short, numeric paragraphs slowly; skim long story paragraphs.</b> In both papers checked, the 10-line paragraph with a few numbers and a "ordered / plans to / payment due" sentence was worth 8–12 of 25 marks. The 50-line company history was worth 2–5.</li>
+      <li><b>Circle hinges.</b> A person, date or deadline mentioned early that a later paragraph quietly relies on ("CA L is the internal auditor" is what makes the GST paragraph exist). They connect two subjects and carry 7–9 marks.</li>
+      <li><b>Box reused numbers.</b> Anything with a currency, a date and a rate together. One such number fed three questions from three subjects.</li>
+      <li><b>When you see 3–4 similar numbers, write the rule before computing.</b> Four exchange rates were given; one was right. The mark is for knowing which date picks which rate.</li>
+    </ol>
+    <div class="fig">
+      <svg viewBox="0 0 980 170" xmlns="http://www.w3.org/2000/svg" font-family="Inter,system-ui,sans-serif" font-size="13">
+        <rect x="20" y="30" width="940" height="110" rx="14" fill="#fff" stroke="#e3ddd3"/>
+        <text x="40" y="60" fill="#1f1d1a">…FOB price of <tspan font-weight="600">€15,000 each</tspan> … payment on <tspan font-weight="600" fill="#b5542d">31 January</tspan> … RBI rate <tspan fill="#9a9389">₹107</tspan>, CBIC rate <tspan fill="#9a9389">₹106</tspan> …</text>
+        <text x="40" y="90" fill="#1f1d1a">Bill of Entry filed <tspan font-weight="600">4 March</tspan> (CBIC <tspan font-weight="700" fill="#4f6b46">₹109</tspan>), ship arrived 6 March (CBIC <tspan fill="#9a9389">₹108</tspan>) … BCD 15% → 10% from 5 March …</text>
+        <rect x="236" y="43" width="112" height="22" rx="5" fill="none" stroke="#1f1d1a" stroke-width="1.6"/>
+        <ellipse cx="520" cy="54" rx="56" ry="13" fill="none" stroke="#b5542d" stroke-width="1.8"/>
+        <text x="40" y="125" fill="#6b655c">boxed = reused by 3 subjects &nbsp;·&nbsp; circled = hinge &nbsp;·&nbsp; grey = decoys &nbsp;·&nbsp; <tspan fill="#4f6b46" font-weight="600">green = the one the rule picks</tspan></text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 3. INDEX -->
+<section>
+  <div class="wrap">
+    <div class="num">03</div>
+    <h2>The index you carry</h2>
+    <div class="grid g2">
+      <div class="card">
+        <h3>A book's index runs the wrong way</h3>
+        <p>It goes <b>name of the law → page</b>. The paper never gives you the name of the law. It gives you facts. In the hall you need <b>facts → page</b>. That is what these sheets are.</p>
+      </div>
+      <div class="card tint-gold">
+        <h3>Seven sheets, one per subject</h3>
+        <p>Each line: <b>2–3 facts you'll recognise → section / standard → the one rule that picks the right number.</b> Built from 120 past questions. The same shapes come back with new company names.</p>
+      </div>
+    </div>
+
+    <div class="fig">
+      <svg viewBox="0 0 980 150" xmlns="http://www.w3.org/2000/svg" font-family="Inter,system-ui,sans-serif" font-size="13">
+        <defs><marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#6b655c"/></marker></defs>
+        <g>
+          <rect x="20" y="40" width="170" height="70" rx="12" fill="#efe9df"/><text x="105" y="68" text-anchor="middle" font-weight="600">facts in the case</text><text x="105" y="90" text-anchor="middle" fill="#6b655c" font-size="12">shape → which sheet</text>
+          <rect x="250" y="40" width="170" height="70" rx="12" fill="#f1e8d0"/><text x="335" y="68" text-anchor="middle" font-weight="600">subject sheet</text><text x="335" y="90" text-anchor="middle" fill="#6b655c" font-size="12">match 2–3 facts</text>
+          <rect x="480" y="40" width="170" height="70" rx="12" fill="#f3e3d9"/><text x="565" y="68" text-anchor="middle" font-weight="600">one line</text><text x="565" y="90" text-anchor="middle" fill="#6b655c" font-size="12">page + rule</text>
+          <rect x="710" y="20" width="120" height="50" rx="12" fill="#e4ebdf"/><text x="770" y="50" text-anchor="middle" font-weight="600">the book</text>
+          <rect x="710" y="80" width="120" height="50" rx="12" fill="#eadfe9"/><text x="770" y="110" text-anchor="middle" font-weight="600">the rule</text>
+          <rect x="870" y="40" width="90" height="70" rx="12" fill="#1f1d1a"/><text x="915" y="80" text-anchor="middle" fill="#fff" font-weight="600">answer</text>
+        </g>
+        <g stroke="#6b655c" stroke-width="1.8" fill="none" marker-end="url(#ar2)">
+          <path d="M190,75 L242,75"/><path d="M420,75 L472,75"/><path d="M650,75 C 680,75 680,45 702,45"/><path d="M650,75 C 680,75 680,105 702,105"/><path d="M830,45 C 850,45 850,75 862,75"/><path d="M830,105 C 850,105 850,75 862,75"/>
+        </g>
+        <text x="490" y="140" text-anchor="middle" fill="#6b655c" font-size="12">open one book at one page, once per question — never browse</text>
+      </svg>
+    </div>
+
+    <h3>Which sheet? The shape of the facts tells you</h3>
+    <table>
+      <tr><th>What the paragraph gives you</th><th>Sheet</th></tr>
+      <tr><td>A person with a job title doing something — EQCR, engagement partner, internal auditor, chief accountant</td><td><span class="tag t-slate">Audit</span></td></tr>
+      <tr><td>A count, a %, or a ladder of prices — 14 directors, 91%, ₹170 / 180 / 190</td><td><span class="tag t-plum">Law</span></td></tr>
+      <tr><td>Terms of an instrument — face value, coupon, convertible into N, redeemable after N years</td><td><span class="tag t-gold">FR</span></td></tr>
+      <tr><td>Rates in pairs — spot / forward, borrow / deposit, India / abroad</td><td><span class="tag t-moss">AFM</span></td></tr>
+      <tr><td>Dates + a place + an amount + a rate change</td><td><span class="tag t-rust">GST / Customs</span></td></tr>
+      <tr><td>WDV, block %, "put to use" dates, crore amounts</td><td><span class="tag t-rust">Direct Tax</span></td></tr>
+      <tr><td>Nouns with no numbers — segments, suppliers, channels, sustainability</td><td><span class="tag t-moss">Strategy / Costing</span></td></tr>
+    </table>
+
+    <h3 style="margin-top:28px">What one line looks like</h3>
+    <div class="line"><span class="tag t-rust">GST</span> &nbsp;advance received · invoice after supply · rate changed between <span class="arrow">→</span> <b>s.14 CGST</b>, GST book p.__ <span class="rule">rule: 2 of 3 events (supply / invoice / payment) before the change → old rate</span></div>
+    <div class="line"><span class="tag t-rust">Customs</span> &nbsp;FOB in foreign currency · several exchange rates · BoE date ≠ arrival date <span class="arrow">→</span> <b>s.14 + s.15 Customs</b>, p.__ <span class="rule">rule: exchange rate = CBIC on BoE date; duty rate = later of BoE / arrival</span></div>
+    <div class="line"><span class="tag t-plum">Law</span> &nbsp;holding above 90% · valuer price · highest price paid · negotiated price <span class="arrow">→</span> <b>s.236 Companies Act</b>, p.__ <span class="rule">rule: higher of valuer and highest paid; extra paid to some must be shared pro-rata</span></div>
+    <div class="line"><span class="tag t-gold">FR</span> &nbsp;preference share · fixed coupon · convertible · redeemable · market rate given <span class="arrow">→</span> <b>Ind AS 32</b>, p.__ <span class="rule">rule: liability = PV of coupons + redemption at market rate; equity = the residual</span></div>
+    <p><a href="ibs-index.pdf" style="display:inline-block;background:#1f1d1a;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:600">Download the full index (PDF, 7 sheets, 119 lines)</a></p>
+    <p class="small">The page column is blank on purpose. Fill it from <i>your</i> copies — about 120 lookups, one evening. After that the sheets are yours; change any wording you'd say differently.</p>
+  </div>
+</section>
+
+<!-- 4. HALL -->
+<section>
+  <div class="wrap">
+    <div class="num">04</div>
+    <h2>In the hall</h2>
+    <div class="grid g2">
+      <div class="card tint-moss">
+        <h3>The 60-second lookup</h3>
+        <p>question stem → subject → scan that paragraph → match 2–3 facts on the sheet → read page + rule → open the book at that page → strike out the decoy numbers → write.</p>
+      </div>
+      <div class="card">
+        <h3>Three kinds of material</h3>
+        <p><b>Trigger sheets</b> (7 pages, front of binder) — every question.<br><b>Procedure sheets</b> for AFM, DT, GST, Customs, FR — the dense numeric paragraphs.<br><b>Framework lists</b> for Strategy — BMC 9, Porter 5, BSC 4, Kano, 7S.</p>
+      </div>
+    </div>
+    <div class="dont" style="margin-top:22px">
+      <div><b>Order is free.</b> The 8 questions never depend on each other. Skipping one costs only that one.</div>
+      <div><b>Don't re-read the case when one answer feels wrong.</b> A misread paragraph affects at most 1–2 questions. Fix that one, move on.</div>
+      <div><b>Which case to drop:</b> the one where the same numbers feed questions from the most different subjects — slowest per mark. (Seen on two cases; use as a tie-breaker.)</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Built from ICAI suggested answers, Sep-2025 / Jan-2026 / May-2026, Paper 6 IBS. Structure analysed with EN Diagram; wording is ours, not ICAI's. Verify permitted material on the ICAI notice before printing anything for the hall.
+  </div>
+</footer>
+</body>
+</html>
